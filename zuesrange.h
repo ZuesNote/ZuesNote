@@ -1,18 +1,18 @@
-#ifndef K_MD_RANGE
-#define K_MD_RANGE
+﻿#ifndef Zues_RANGE
+#define Zues_RANGE
 
 #include <QObject>
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTextBlock>
 
-class KMDRange : public QObject
+class ZuesRange : public QObject
 {
 	Q_OBJECT
 public:
-	KMDRange(QObject *parent = nullptr);
-	KMDRange(QTextCursor* textCursor = nullptr, QTextBlock* textBlock = nullptr);
-	~KMDRange();
+	ZuesRange(QObject *parent = nullptr);
+	ZuesRange(QTextCursor* textCursor = nullptr, QTextBlock* textBlock = nullptr);
+	~ZuesRange();
 
 public:
 	bool InitRange();
@@ -22,4 +22,4 @@ private:
 	QTextCursor* m_textCursor = nullptr;
 	QTextBlock* m_textBlock = nullptr;
 };
-#endif // K_MD_WIDGET
+#endif // Zues_RANGE

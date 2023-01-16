@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(KNote)
+project(ZuesNote)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -37,19 +37,19 @@ get_target_property(QtCore_location Qt5::Core LOCATION)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 get_target_property(QtCore_location Qt5::Network LOCATION)
 
-add_executable(KNote
-    kmainwindow.h
-    kmainwindow.cpp
-    kmdedit.h
-    kmdedit.cpp
-    kmdwidget.h
-    kmdwidget.cpp
-    kmdrange.h
-    kmdrange.cpp
+add_executable(ZuesNote
+    zuesmainwindow.h
+    zuesmainwindow.cpp
+    zuesedit.h
+    zuesedit.cpp
+    zuesmdwidget.h
+    zuesmdwidget.cpp
+    zuesrange.h
+    zuesrange.cpp
 	main.cpp
 )
 
-target_link_libraries(KNote Qt5::Widgets Qt5::Core Qt5::GuiPrivate Qt5::CorePrivate Qt5::Network)
+target_link_libraries(ZuesNote Qt5::Widgets Qt5::Core Qt5::GuiPrivate Qt5::CorePrivate Qt5::Network)
 
 #拷贝对应的dll目录到
 file(GLOB QT_DLL "${CMAKE_PREFIX_PATH}/*d.dll")

@@ -3,12 +3,12 @@
 
 #include <QMainWindow>
 
-class KMainWindow : public QMainWindow
+class ZuesMainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	KMainWindow(QWidget *parent = nullptr);
-	~KMainWindow();
+	ZuesMainWindow(QWidget *parent = nullptr);
+	~ZuesMainWindow();
 };
 #endif // MAINWINDOW_H

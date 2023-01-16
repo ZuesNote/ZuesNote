@@ -1,16 +1,16 @@
-#ifndef K_MD_EDIT
+﻿#ifndef K_MD_EDIT
 #define K_MD_EDIT
 
 #include <QTextEdit>
 
 class QTextDocument;
 
-class KMDEdit : public QTextEdit
+class ZuesEdit : public QTextEdit
 {
 	Q_OBJECT
 public:
-	KMDEdit(QWidget *parent = nullptr);
-	~KMDEdit();
+	ZuesEdit(QWidget *parent = nullptr);
+	~ZuesEdit();
 
 	enum class BlockType
 	{

@@ -1,4 +1,4 @@
-﻿#include "kmdedit.h"
+﻿#include "zuesedit.h"
 
 #include <QTextCursor>
 #include <QTextDocument>
@@ -6,19 +6,19 @@
 #include <QTextLayout>
 #include <QAbstractTextDocumentLayout>
 
-#include "kmdrange.h"
+#include "zuesrange.h"
 #if _DEBUG
 #include <QDebug>
 #endif
 
 
-KMDEdit::KMDEdit(QWidget *parent)
+ZuesEdit::ZuesEdit(QWidget *parent)
 	: QTextEdit(parent)
 {
 	m_doc = this->document();
 
-	connect(this, &QTextEdit::textChanged, this, &KMDEdit::onDealInput);
-	connect(m_doc, &QTextDocument::blockCountChanged, this, &KMDEdit::onBlockChange);
+	connect(this, &QTextEdit::textChanged, this, &ZuesEdit::onDealInput);
+	connect(m_doc, &QTextDocument::blockCountChanged, this, &ZuesEdit::onBlockChange);
 
 	_init();
 	setFocus();
@@ -26,7 +26,7 @@ KMDEdit::KMDEdit(QWidget *parent)
 //	insertPlainText("123");
 }
 
-void KMDEdit::_init()
+void ZuesEdit::_init()
 {
 // 	QTextCursor textCursor = this->textCursor();
 // 	QTextCharFormat charFormat = _getNormalFormat();
@@ -41,33 +41,26 @@ void KMDEdit::_init()
 	m_doc->setDefaultFont(font);
 }
 
-KMDEdit::~KMDEdit()
+ZuesEdit::~ZuesEdit()
 {
 }
 
-void KMDEdit::inputMethodEvent(QInputMethodEvent*e)
+void ZuesEdit::inputMethodEvent(QInputMethodEvent*e)
 {
-	//�������Ŀǰֻ���յ������뷨�ķ�����Ŀǰ����̫���С����Ժ��Ե�
 	QString str = e->commitString();
 	QString str1 = e->preeditString();
 	qDebug() << str << str1;
 	return QTextEdit::inputMethodEvent(e);
 }
 
-void KMDEdit::onInputEnter()
+void ZuesEdit::onInputEnter()
 {
 
 }
 
-// ���ﴦ�����еĻس���
-/*
-markdown�������ʱ���м���case
-1. �����б����س����Ļ�ԭ��ԭʼ״̬
-
-*/
 
 
-void KMDEdit::onBlockChange(int newIndex)
+void ZuesEdit::onBlockChange(int newIndex)
 {
 	QTextBlock curBlock = m_doc->findBlockByNumber(newIndex);
 	QTextBlockFormat blockFormat = curBlock.blockFormat();
@@ -87,20 +80,16 @@ void KMDEdit::onBlockChange(int newIndex)
 	qDebug() << index;
 }
 
-void KMDEdit::onDealInput()
+void ZuesEdit::onDealInput()
 {
 	QTextCursor textCursor = this->textCursor();
 	QTextBlock curTextBlock = textCursor.block();
 
-	KMDRange range(&textCursor, &curTextBlock);
+	ZuesRange range(&textCursor, &curTextBlock);
 	range.InitRange();
-
-	this->setTextCursor(textCursor);
-
-	//���Դ����Զ�������
 }
 
-void KMDEdit::testOutAllBlock() 
+void ZuesEdit::testOutAllBlock() 
 {
 	QTextFrame* frame = m_doc->rootFrame();
 	auto f = frame->begin();

@@ -1,4 +1,4 @@
-#include "kmdrange.h"
+ï»¿#include "zuesrange.h"
 
 #include <QDebug>
 
@@ -12,7 +12,6 @@ namespace
 	constexpr int CodeFontSize = 10;
 }
 
-//Õâ¸ö½á¹¹Ìå£¬¿ÉÒÔ´øÒ»Ð©Êý¾Ý½á¹¹
 class KTextBlockData : public QTextBlockUserData
 {
 public:
@@ -39,21 +38,21 @@ public:
 };
 
 
-KMDRange::KMDRange(QObject *parent)
+ZuesRange::ZuesRange(QObject *parent)
 	: QObject(parent)
 {
 
 }
 
-KMDRange::KMDRange(QTextCursor* textCursor, QTextBlock* textBlock) : m_textCursor(textCursor), m_textBlock(textBlock)
+ZuesRange::ZuesRange(QTextCursor* textCursor, QTextBlock* textBlock) : m_textCursor(textCursor), m_textBlock(textBlock)
 {
 }
 
-KMDRange::~KMDRange()
+ZuesRange::~ZuesRange()
 {
 }
 
-bool KMDRange::InitRange()
+bool ZuesRange::InitRange()
 {
 	if (m_textBlock == nullptr || m_textCursor == nullptr)
 		return false;
@@ -72,25 +71,25 @@ bool KMDRange::InitRange()
 		KTextBlockData* userData = new KTextBlockData(2);
 		m_textBlock->setUserData(userData);
 
-		m_textCursor->beginEditBlock(); // Õâ¸ö¶«Î÷ÊÇºÏ²¢ÊÂÎñµÄ
+		m_textCursor->beginEditBlock();
 		int nBlock = m_textBlock->position();
 		int nTextCur = m_textCursor->position();
 		m_textCursor->setPosition(m_textBlock->position());
-//		m_textCursor->setPosition(m_textBlock->position() + 1, QTextCursor::KeepAnchor);
-		m_textCursor->select(QTextCursor::BlockUnderCursor);
+		m_textCursor->setPosition(m_textBlock->position() + 2, QTextCursor::KeepAnchor);
+//		m_textCursor->select(QTextCursor::BlockUnderCursor);
 //		m_textCursor->movePosition(QTextCursor::StartOfBlock, QTextCursor::MoveAnchor);
 		m_textCursor->removeSelectedText();
-		m_textCursor->endEditBlock();
 
 		QFont font;
 		font.setBold(true);
-		font.setPixelSize(10);
+		font.setPixelSize(Heading1FontSize);
 
 		QTextCharFormat charFormat = m_textCursor->charFormat();
 		charFormat.setFont(font);
 		
 		m_textCursor->setBlockCharFormat(charFormat);
 		m_textCursor->setPosition(0);
+		m_textCursor->endEditBlock();
 
 	}
 
